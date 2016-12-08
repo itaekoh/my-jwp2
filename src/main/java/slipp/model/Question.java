@@ -17,10 +17,13 @@ import javax.persistence.OrderBy;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class Question {
 	@Id
 	@GeneratedValue
+	@JsonProperty
 	private Long id;
 	
 	@ManyToOne
@@ -38,7 +41,7 @@ public class Question {
 	
 	@OneToMany(mappedBy="question")
 	@Where(clause = "deleted = false")
-	@OrderBy("id ASC")
+	@OrderBy("id DESC")
 	private List<Answer> answers;
 	
 	private boolean deleted;
